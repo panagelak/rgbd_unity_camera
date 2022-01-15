@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!--simulation time from clock topic coming from unity-->
+  <!-- <param name="/use_sim_time" value="true"/> -->
+
+  <!-- With RViz-->
+  <arg name="rviz" default="true" doc="Will launch RViz" />
+  <arg name="rviz_config" default="unity" doc="RViz configuration"/> 
+
+  <!--IP-->
+  <arg name="ROS_IP" default="0.0.0.0" doc="Will Set the IP for the ROS-TCP-Endpoint" />
+  <rosparam param="ROS_IP" subst_value="True">$(arg ROS_IP)</rosparam>
+  <!-- tcp ros endpoint -->
+  <node name="server_endpoint" pkg="ros_tcp_endpoint" type="default_server_endpoint.py" args="--wait" output="screen" respawn="true" />
+
+  <!-- load config -->
+  <!-- <rosparam file="$(find unity_bringup)/config/config.yaml" command="load"/> -->
+  
+
+  <!-- unity compress subscriber (decompress images)-->
+  <node name="unity_compress_subscriber" pkg="unity_compress_subscriber" type="unity_compress_subscriber" output="screen" respawn="true" />
+
+  <!--rviz-->
+  <group if="$(arg rviz)">
+    <arg name="config" default="moveit"/> 
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find unity_bringup)/rviz/$(arg rviz_config).rviz" />
+  </group>
+
+  <!-- camera frames -->
+  <node pkg="tf" type="static_transform_publisher" name="unity_camera_frame" args="0 0 1.5 0 0.523598 0  /world /unity_camera/frame  100"/>
+  <node pkg="tf" type="static_transform_publisher" name="unity_camera_rgb_frame" args="0 0 0 0 0 0  /unity_camera/frame /unity_camera/rgb_frame  100"/>
+  <node pkg="tf" type="static_transform_publisher" name="unity_camera_depth_frame" args="0 0 0 0 0 0  /unity_camera/frame /unity_camera/depth_frame  100"/>
+
+</launch>

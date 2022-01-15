@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>depth_image_to_pc2</name>
+  <version>0.0.0</version>
+  <description>
+
+     Contains nodelets for processing depth images such as those
+     produced by OpenNI camera. Functions include creating disparity
+     images and point clouds, as well as registering (reprojecting)
+     a depth image into another camera frame.
+
+  </description>
+  <author>Patrick Mihelich</author>
+  <maintainer email="vincent.rabaud@gmail.com">Vincent Rabaud</maintainer>
+  <maintainer email="software@autonomoustuff.com">Autonomoustuff team</maintainer>
+  <license>BSD</license>
+  <url>http://ros.org/wiki/depth_image_proc</url>
+
+
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>boost</build_depend>
+  
+  <depend>image_geometry</depend>
+  <depend>sensor_msgs</depend>
+  <depend>cv_bridge</depend>
+  <export>
+  </export>
+</package>

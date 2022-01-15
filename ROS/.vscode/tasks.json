@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "ROS: Build",
+            "type": "shell",
+            "command": "catkin build",
+            "args": [
+                //"--pkg",
+                //"hello_vs_code",
+                "-j4",
+                "-DCMAKE_BUILD_TYPE=Debug",
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"
+            ],
+            "problemMatcher": "$gcc",
+            "options": {
+				"cwd": "${workspaceFolder}/../../"
+			},
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "revealProblems": "onProblem",
+                "panel": "new"
+            }
+        }
+    ]
+}
