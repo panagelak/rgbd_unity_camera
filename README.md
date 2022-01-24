@@ -1,5 +1,12 @@
 # rgbd Unity Camera to ROS 
 
+## Contributors
+
+[Panagiotis Angelakis](https://github.com/panagelak)
+
+[Christos Gkournelos](https://github.com/cgkournelos)
+
+
 ## Overview
 
 This repository holds the Unity Project that simulates an rgbd camera meaning that it publishes into Ros 4 topics
